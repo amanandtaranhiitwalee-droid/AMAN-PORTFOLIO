@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Slider | Khushi Gilhotra</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap');
+
+    body {
+      background: linear-gradient(135deg, #0a192f, #112240);
+      font-family: 'Poppins', sans-serif;
+      color: #ccd6f6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: transparent;
+      border: 2px solid #64ffda;
+      color: #64ffda;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #64ffda;
+      color: #0a192f;
+      box-shadow: 0 0 10px rgba(100, 255, 218, 0.8);
+    }
+
+    .container {
+      position: relative;
+      width: 80%;
+      max-width: 700px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 25px rgba(100, 255, 218, 0.2);
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      height: 420px;
+      border-radius: 15px;
+      object-fit: cover;
+    }
+
+    .active {
+      display: block;
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .controls {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .btn {
+      background: rgba(100, 255, 218, 0.2);
+      border: 2px solid #64ffda;
+      color: #64ffda;
+      font-size: 1.5rem;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #64ffda;
+      color: #0a192f;
+      box-shadow: 0 0 15px rgba(100, 255, 218, 0.6);
+    }
+
+    .dots {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .dot {
+      height: 12px;
+      width: 12px;
+      margin: 0 5px;
+      background-color: #233554;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .dot.active {
+      background-color: #64ffda;
+      box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+    }
+
+    h1 {
+      color: #64ffda;
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: 90%;
+      }
+      .slide {
+        height: 280px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="projects.html" class="back-btn">← Back to Projects</a>
+
+  <h1>🖼 Image Slider</h1>
+
+  <div class="container">
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1000&q=80" class="slide active" alt="Nature 1">
+    <img src="https://images.unsplash.com/photo-1493244040629-496f6d136cc3?auto=format&fit=crop&w=1000&q=80" class="slide" alt="Nature 2">
+    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=80" class="slide" alt="Nature 3">
+    <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1000&q=80" class="slide" alt="Nature 4">
+
+    <div class="controls">
+      <button class="btn prev">&#10094;</button>
+      <button class="btn next">&#10095;</button>
+    </div>
+  </div>
+
+  <div class="dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    const prev = document.querySelector('.prev');
+    const next = document.querySelector('.next');
+    let index = 0;
+
+    function showSlide(n) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === n);
+        dots[i].classList.toggle('active', i === n);
+      });
+    }
+
+    function nextSlide() {
+      index = (index + 1) % slides.length;
+      showSlide(index);
+    }
+
+    function prevSlide() {
+      index = (index - 1 + slides.length) % slides.length;
+      showSlide(index);
+    }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        index = i;
+        showSlide(index);
+      });
+    });
+
+    next.addEventListener('click', nextSlide);
+    prev.addEventListener('click', prevSlide);
+
+    // Auto-slide every 4 seconds
+    setInterval(nextSlide, 4000);
+  </script>
+
+</body>
+</html>

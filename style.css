@@ -1,0 +1,209 @@
+/* ...existing code... */
+
+/* Basic reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html,body { height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color: #222; background: #f6f7fb; }
+
+/* Navbar */
+.navbar {
+  background: #ffffff;
+  border-bottom: 1px solid rgba(20,20,40,0.04);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.nav-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.6rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Brand */
+.brand {
+  font-weight: 700;
+  color: #0b63d6;
+  text-decoration: none;
+  font-size: 1.125rem;
+  letter-spacing: 0.2px;
+}
+
+/* Toggle (mobile) */
+.nav-toggle {
+  margin-left: auto;
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.35rem;
+}
+.nav-toggle:focus { outline: 2px solid rgba(11,99,214,0.25); border-radius: 4px; }
+
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #222;
+  position: relative;
+  transition: transform .2s ease, opacity .2s ease;
+}
+.hamburger::before,
+.hamburger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+.hamburger::before { top: -7px; }
+.hamburger::after { top: 7px; }
+
+/* Nav menu */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  gap: 1.25rem;
+}
+.nav-list { display: flex; gap: 0.75rem; list-style: none; align-items: center; }
+.nav-list a {
+  display: inline-block;
+  padding: 0.5rem 0.45rem;
+  color: #333;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 0.96rem;
+  transition: background .12s ease, color .12s ease;
+}
+.nav-list a:hover { background: rgba(11,99,214,0.06); color: #0b63d6; }
+
+/* Actions */
+.nav-actions { display:flex; gap:0.6rem; align-items:center; }
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 0.45rem 0.8rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1px solid transparent;
+}
+.btn.primary {
+  background: #0b63d6;
+  color: #fff;
+  box-shadow: 0 2px 6px rgba(11,99,214,0.12);
+}
+.btn.ghost {
+  background: transparent;
+  color: #0b63d6;
+  border-color: rgba(11,99,214,0.12);
+}
+
+/* Hero */
+.hero {
+  max-width: 1100px;
+  margin: 2.25rem auto;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #fff 0%, #fbfdff 100%);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(20,20,40,0.04);
+  text-align: center;
+}
+.hero h1 { font-size: 1.75rem; margin-bottom: 0.5rem; color: #0f1724; }
+.hero p { color: #475569; margin-bottom: 1rem; }
+.btn.large { padding: 0.75rem 1.1rem; font-size: 1rem; }
+
+/* Parking Banner Section */
+.parking-banner {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    margin-top: 60px; /* Space for fixed navbar */
+}
+
+.parking-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.banner-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 2;
+}
+
+.banner-content h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.banner-content p {
+    font-size: 1.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .parking-banner {
+        height: 300px;
+    }
+
+    .banner-content h2 {
+        font-size: 2rem;
+    }
+
+    .banner-content p {
+        font-size: 1.2rem;
+    }
+}
+
+/* Responsive: collapse nav */
+@media (max-width: 900px) {
+  .nav-toggle { display: block; }
+  .nav-menu {
+    position: absolute;
+    top: 64px;
+    right: 12px;
+    background: #fff;
+    border: 1px solid rgba(20,20,40,0.06);
+    border-radius: 10px;
+    padding: 0.75rem;
+    box-shadow: 0 8px 30px rgba(15,23,42,0.06);
+    flex-direction: column;
+    width: calc(100% - 32px);
+    max-width: 320px;
+    transform-origin: top right;
+    transform: scale(.98);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform .16s ease, opacity .16s ease;
+  }
+  .nav-menu.open {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .nav-list { flex-direction: column; gap: 0.5rem; }
+  .nav-actions { justify-content: flex-end; padding-top: 0.5rem; width:100%; }
+}
+
+/* ...existing code... */
