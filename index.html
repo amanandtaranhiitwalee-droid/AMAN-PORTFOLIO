@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+
+
+</head>
+<body>
+<!-- <php include('includes/header.html') ?> -->
+
+    <script src="assets/js/script.js"></script>
+<header class="navbar">
+        <div class="nav-container">
+            <a class="brand" href="#">ParkMate</a>
+
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+
+            <nav class="nav-menu" aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Parking Slots</a></li>
+                    <li><a href="#">Reservations</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="contect.html">Contact</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a class="btn ghost" href="#">Login</a>
+                    <a class="btn primary" href="#">Register</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="parking-banner">
+            <div class="banner-overlay"></div>
+            <img src="website_keyvisual_parking.webp" alt="Modern parking facility" height="100px" width="200px">
+            <div class="banner-content">
+                <h2>Smart Parking Solutions</h2>
+                <p>Find and reserve your perfect parking spot</p>
+            </div>
+        </section>
+
+        <section class="hero">
+            <h1>Manage parking with ease</h1>
+            <p>Real-time availability, reservations, and payment management for your parking facilities.</p>
+            <a class="btn primary large" href="#">Get Started</a>
+        </section>
+    </main>
+
+    <script>
+        // Simple toggle for mobile navigation
+        (function () {
+            const toggle = document.querySelector('.nav-toggle');
+            const menu = document.querySelector('.nav-menu');
+            toggle.addEventListener('click', function () {
+                const expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', String(!expanded));
+                menu.classList.toggle('open');
+            });
+        })();
+    </script>
+</body>
+</html>
+
+
